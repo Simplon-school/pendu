@@ -3,17 +3,25 @@ from display_hangman import display_hangman
 
 # List of words that we will choose from
 list_of_fruits = ["banana", "apple", "orange", "coconut", "strawberry"]
-list_of_French_cities = ["meaux", "pessac", "nice", "albi", "poitier" ]
+list_of_French_cities = ["meaux", "pessac", "nice", "albi", "amiens"]
 # Module "choice" to choose a word from list_of_words randomly
 word_to_guess = random.choice(list_of_French_cities)
 
-print("word_to_guess: ", word_to_guess)
+# print("word_to_guess: ", word_to_guess)
 
 # List of letters guessed from the player
 found_letters = []
 
 # # List of error letters guessed from the player
 error_lists = []
+
+
+# Mask the word
+def mask_word():
+    return "_"*len(word_to_guess)
+
+
+print(mask_word())
 
 """
 Generate the mask of guessed word.
@@ -48,7 +56,11 @@ def main():
             if guessed_letter not in error_lists:
                 error_lists.append(guessed_letter)
                 print("error_lists: ", error_lists)
-                print(display_hangman()[error - len(error_lists)])
+                game_over = display_hangman()[error - len(error_lists)]
+                print(game_over)
+                if game_over == display_hangman()[0]:
+                    print("You lose!")
+                    break
             elif guessed_letter in error_lists:
                 print("'{}' is already guessed  and exist in error_lists ".format(guessed_letter))
 
@@ -71,9 +83,4 @@ def main():
             print("You win!")
             break
 
-        # In the case that the player exceeded the number of times specified, he loses
-        elif var <= 0:
-            print("You have exceeded the length of guessed word")
-            print("You lose!")
-            # print(display_hangman()[0])
-            break
+
