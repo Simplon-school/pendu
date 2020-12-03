@@ -3,7 +3,7 @@ from display_hangman import display_hangman
 
 # List of words that we will choose from
 list_of_fruits = ["banana", "apple", "orange", "coconut", "strawberry"]
-list_of_French_cities = ["meaux", "pessac", "nice", "albi", "poitier" ]
+list_of_French_cities = ["meaux", "pessac", "nice", "albi", "poitiers" ]
 # Module "choice" to choose a word from list_of_words randomly
 word_to_guess = random.choice(list_of_French_cities)
 
